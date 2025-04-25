@@ -3,25 +3,15 @@ import SubNav from "./components/Header/SubNav";
 import TopNav from "./components/Header/TopNav";
 import ScrollNav from "./components/Header/ScrollNav";
 import HeroSection from "./pages/Hero/HeroSection";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 function App() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const headerRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobileView(window.matchMedia("(max-width: 1280px)").matches);
+      setIsMobileView(window.matchMedia("(max-width: 991px)").matches);
     };
 
     checkScreenSize();
@@ -51,17 +41,16 @@ function App() {
     if (isMobileView) {
       return <TopNav />;
     }
-    return isScrolled ? <ScrollNav /> : <TopNav />;
+    return <TopNav />;
   };
 
   return (
-    <>
-      <Box ref={headerRef}>
-        {getNavComponent()}
-        <SubNav scrolledHeight={getScrolledHeight()} />
-        <HeroSection />
-      </Box>
-    </>
+    <Box ref={headerRef}>
+      {getNavComponent()}
+
+      <SubNav scrolledHeight={getScrolledHeight()} />
+      <HeroSection />
+    </Box>
   );
 }
 

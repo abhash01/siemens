@@ -50,7 +50,7 @@ const ScrollNav = () => {
           <span ref={firstItemRef} className={styles.active}>
             Digital Industries Software
           </span>
-          <span>Software & products</span>
+          <span>Software & products test</span>
           <span>Solutions & services</span>
           <span>Industries</span>
           <span>Training & support</span>
